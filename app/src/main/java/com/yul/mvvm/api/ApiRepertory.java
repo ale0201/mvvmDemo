@@ -4,11 +4,11 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ImageRepertory {
-    private static ImageRepertory repertory;
+public class ApiRepertory {
+    private static ApiRepertory repertory;
     private static Retrofit mRetrofit;
 
-    public ImageRepertory() {
+    public ApiRepertory() {
         mRetrofit = new Retrofit.Builder()
                 .baseUrl("https://cn.bing.com/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -16,9 +16,9 @@ public class ImageRepertory {
                 .build();
     }
 
-    public static ImageRepertory getInstance() {
+    public static ApiRepertory getInstance() {
         if (repertory == null) {
-            repertory = new ImageRepertory();
+            repertory = new ApiRepertory();
         }
         return repertory;
     }
