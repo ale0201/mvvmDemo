@@ -1,16 +1,25 @@
 package com.yul.mvvm.viewmodel;
 
+import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.ViewModel;
+
+import com.yul.mvvm.api.BaseModel;
 import com.yul.mvvm.api.BaseObserver;
-import com.yul.mvvm.base.BaseViewModel;
 import com.yul.mvvm.model.Data;
 import com.yul.mvvm.model.ImageBean;
 
-public class ImageViewModel extends BaseViewModel<ImageBean.ImagesBean> {
+public class ImageViewModel extends ViewModel {
+    protected MutableLiveData<Data<ImageBean.ImagesBean>> mutableLiveData;
+    protected BaseModel baseModel;
     private int idx;
 
     public ImageViewModel() {
-        super();
-        idx = 0;
+        mutableLiveData = new MutableLiveData<>();
+        baseModel = new BaseModel();
+    }
+
+    public MutableLiveData<Data<ImageBean.ImagesBean>> getMutableLiveData() {
+        return mutableLiveData;
     }
 
     public void loadImage() {

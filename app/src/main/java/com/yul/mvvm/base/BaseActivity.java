@@ -7,19 +7,21 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-public abstract class BaseActivity<L extends BaseLifeCycle, V extends ViewDataBinding>
+public abstract class BaseActivity<L extends BaseLifeCycle, V extends ViewDataBinding, P extends BasePresenter>
         extends AppCompatActivity{
     protected Context mContext;
     protected L mLifeCycle;
     protected V dataBinding;
+    protected P mPresenter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
         dataBinding = DataBindingUtil.setContentView(this, getLayoutRes());
-        getLifecycle().addObserver(mLifeCycle);
         initView();
+        getLifecycle().addObserver(mLifeCycle);
+        mLifeCycle.addPresenter(mPresenter);
         startListenerData();
     }
 

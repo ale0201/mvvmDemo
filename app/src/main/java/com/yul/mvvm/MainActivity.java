@@ -12,9 +12,10 @@ import com.yul.mvvm.databinding.ActivityMainBinding;
 import com.yul.mvvm.lifecycler.MainLifeCycle;
 import com.yul.mvvm.model.Data;
 import com.yul.mvvm.model.ImageBean;
+import com.yul.mvvm.presenter.ImagePresenter;
 import com.yul.mvvm.viewmodel.ImageViewModel;
 
-public class MainActivity extends BaseActivity<MainLifeCycle, ActivityMainBinding> {
+public class MainActivity extends BaseActivity<MainLifeCycle, ActivityMainBinding, ImagePresenter> {
     private ProgressDialog mProgressDialog;
     private ImageViewModel baseViewModel;
 
@@ -26,10 +27,10 @@ public class MainActivity extends BaseActivity<MainLifeCycle, ActivityMainBindin
         baseViewModel = new ViewModelProvider(
                 this, new ViewModelProvider.AndroidViewModelFactory(getApplication())
         ).get(ImageViewModel.class);
-        dataBinding.setPresenter(new Presenter());
-
+        dataBinding.setPresenter(new ClickHandler());
+        //将presener绑定生命周期
+        mPresenter = new ImagePresenter(baseViewModel);
         mProgressDialog.show();
-        baseViewModel.loadImage();
     }
 
     @Override
@@ -54,7 +55,7 @@ public class MainActivity extends BaseActivity<MainLifeCycle, ActivityMainBindin
         });
     }
 
-    public class Presenter {
+    public class ClickHandler {
 
         public void onClick(View view) {
             mProgressDialog.show();

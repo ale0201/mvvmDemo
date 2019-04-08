@@ -11,7 +11,7 @@
 
         <variable
             name="presenter"
-            type="com.yul.mvvm.MainActivity.Presenter" />
+            type="com.yul.mvvm.MainActivity.ClickHandler" />
     </data>
 
     <LinearLayout
