@@ -31,4 +31,5 @@ dependencies {
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'//配合Rxjava 使用
     implementation 'com.github.bumptech.glide:glide:4.6.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
 }

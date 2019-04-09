@@ -9,5 +9,5 @@ public abstract class BasePresenter<M extends ViewModel> {
         if (viewModel != null) {
             this.mViewModel = viewModel;
         }
-    };
+    }
 }

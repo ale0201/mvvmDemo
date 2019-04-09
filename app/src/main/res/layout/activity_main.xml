@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -10,7 +8,7 @@
             type="com.yul.mvvm.model.ImageBean.ImagesBean" />
 
         <variable
-            name="presenter"
+            name="click"
             type="com.yul.mvvm.MainActivity.ClickHandler" />
     </data>
 
@@ -33,14 +31,14 @@
                 android:id="@+id/btn_previous"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:onClick="@{presenter.onClick}"
+                android:onClick="@{click.onClick}"
                 android:layout_weight="1"
                 android:text="上一张" />
 
             <Button
                 android:id="@+id/btn_load"
                 android:layout_width="0dp"
-                android:onClick="@{presenter.onClick}"
+                android:onClick="@{click.onClick}"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="加载" />
@@ -49,7 +47,7 @@
                 android:id="@+id/btn_next"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:onClick="@{presenter.onClick}"
+                android:onClick="@{click.onClick}"
                 android:layout_weight="1"
                 android:text="下一张" />
 

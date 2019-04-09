@@ -3,6 +3,7 @@ package com.yul.mvvm;
 import android.app.ProgressDialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Toast;
@@ -24,10 +25,8 @@ public class MainActivity extends BaseActivity<MainLifeCycle, ActivityMainBindin
         mLifeCycle = new MainLifeCycle(this);
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setMessage("加载中");
-        baseViewModel = new ViewModelProvider(
-                this, new ViewModelProvider.AndroidViewModelFactory(getApplication())
-        ).get(ImageViewModel.class);
-        dataBinding.setPresenter(new ClickHandler());
+        baseViewModel = ViewModelProviders.of(this).get(ImageViewModel.class);
+        dataBinding.setClick(new ClickHandler());
         //将presener绑定生命周期
         mPresenter = new ImagePresenter(baseViewModel);
         mProgressDialog.show();
@@ -44,7 +43,7 @@ public class MainActivity extends BaseActivity<MainLifeCycle, ActivityMainBindin
             @Override
             public void onChanged(@Nullable Data<ImageBean.ImagesBean> imagesBeanData) {
                 if (imagesBeanData.getErrorMsg() != null) {
-                    Toast.makeText(MainActivity.this, imagesBeanData.getErrorMsg(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, imagesBeanData.getErrorMsg(), Toast.LENGTH_SHORT).show();
                     mProgressDialog.dismiss();
                     return;
                 }
